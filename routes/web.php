@@ -12,3 +12,7 @@
 */
 
 Route::get('/', ['uses' => 'CalendarController@calendar']);
+
+Auth::routes();
+
+Route::get('/admin', 'AdminController@index');

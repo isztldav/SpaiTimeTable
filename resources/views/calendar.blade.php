@@ -20,6 +20,10 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.print.css" media="print"/>
 
@@ -78,31 +82,46 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (Route::has('login'))
+                    @if (Auth::check())
+                        <li><a href="{{ url('/admin') }}">Admin Panel</a></li>
+                    @else
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/register') }}">Register</a></li>
+                    @endif
+                @endif
+            </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
 <div class="container">
-
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2" >
             {!! Form::open(['url' => '/', 'method' => 'get']) !!}
             <div class="form-group">
-                <select multiple class="form-control" name="class1" size="15">
+                <label for="class1">First Class</label>
+                <select class="form-control selectpicker" id="class1" name="class1" data-live-search="true">
+                    <option value="" selected> </option>
                     @yield('models1')
                 </select>
             </div>
             <div class="form-group">
-                <select multiple class="form-control" name="class2" size="15">
+                <label for="class2">Second Class</label>
+                <select class="form-control selectpicker" id="class2" name="class2" data-live-search="true">
+                    <option value="" selected> </option>
                     @yield('models2')
                 </select>
             </div>
             {!! Form::submit('Show Lessons',['class' => 'btn btn-default']) !!}
             {!! Form::close() !!}
+            <hr>
         </div>
-        <div class="col-md-8">@yield('calendar')</div>
+        <div class="col-md-10">
+            @yield('calendar')
+        </div>
     </div>
-
 </div> <!-- /container -->
 
 <footer class="footer">
@@ -118,6 +137,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 @yield('scripts')
 </body>
 </html>

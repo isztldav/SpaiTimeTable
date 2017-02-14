@@ -60,7 +60,7 @@ class SpaiLesson extends Model implements \MaddHatter\LaravelFullcalendar\Event
     public function getEventOptions()
     {
         return [
-            'color' => "#808080",
+            'color' => "#3034a3",
         ];
     }
 }
